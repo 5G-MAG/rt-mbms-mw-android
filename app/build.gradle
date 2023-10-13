@@ -1,0 +1,79 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id("org.openapi.generator") version "6.0.1"
+    id("com.rameshkp.openapi-merger-gradle-plugin") version "1.0.4"
+    id("com.jaredsburrows.license") version "0.9.0"
+    id 'com.google.android.gms.oss-licenses-plugin'
+}
+
+android {
+    compileSdk 33
+    ndkVersion '25.1.8937393'
+    defaultConfig {
+        applicationId "com.nakolos.ossmw"
+        minSdk 28
+        targetSdk 32
+        versionCode 1
+        versionName "0.1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                cppFlags '-std=c++17'
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+
+        }
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    implementation "com.google.android.gms:play-services-oss-licenses:17.0.0"
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.preference:preference:1.1.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.0-M1'
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation "androidx.media3:media3-exoplayer:1.1.0"
+    implementation "androidx.media3:media3-exoplayer-hls:1.1.0"
+    implementation 'androidx.media3:media3-ui:1.1.0'
+}
+
+openApiGenerate {
+    generatorName.set("cpp-restsdk")
+    inputSpec.set("$rootDir/app/3gpp-api-specs-merged/TS26512_M5.json")
+    outputDir.set("$rootDir/app/src/main/cpp/generated/m5-cpp")
+    apiPackage.set("com.nakolos.m5client.api")
+    modelPackage.set("com.nakolos.m5client.model")
+    packageName.set("M5Client")
+}

@@ -1,0 +1,37 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Info">
+        <Preference
+            app:key="main_text"
+            app:title="NAKOLOS Middleware"
+        app:summary="The NAKOLOS Middleware enables applications to receive media distributed over 5G Broadcast.\n
+        It is intended to be used for trials and demos only."/>
+        <Preference
+            app:key="main_text2"
+            app:summary="Your use of this app is subject to the license available below this text (menu item License Information)."/>
+        <Preference
+            app:key="version_string"
+            app:title="Version"
+            app:summary="x.x.x"/>
+        <Preference
+            app:key="show_license"
+            app:title="License Information">
+        </Preference>
+        <Preference
+            app:key="show_oss_licenses"
+            app:title="Open Source license notices (Android)">
+        </Preference>
+        <Preference
+            app:key="show_oss_licenses2"
+            app:title="Open Source license notices (native)">
+        </Preference>
+    </PreferenceCategory>
+    <PreferenceCategory app:title="Settings">
+        <EditTextPreference
+            app:key="api_key"
+            app:title="Nakolos API Key"
+            app:useSimpleSummaryProvider="true" />
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

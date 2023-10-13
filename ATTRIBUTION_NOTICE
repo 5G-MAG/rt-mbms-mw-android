@@ -1,0 +1,25 @@
+Code in app/src/main/cpp is derived from:
+  5G-MAG RT MBMS Middleware
+  https://github.com/5G-MAG/rt-mbms-mw
+  License: 5G-MAG Public License (v1.0)
+
+Further attribution notices:
+- cpprestsdk by Microsoft
+  available at https://github.com/microsoft/cpprestsdk
+  Licensed under MIT terms (https://github.com/microsoft/cpprestsdk/blob/master/license.txt)
+ 
+- spdlog by Gabi Melman
+  available at https://github.com/gabime/spdlog
+  Licensed under MIT terms (https://github.com/gabime/spdlog/blob/v1.x/LICENSE)
+ 
+- TinyXML-2 by Lee Thomason
+  available at https://github.com/leethomason/tinyxml2
+  Licensed under zlib terms (https://github.com/leethomason/tinyxml2/blob/master/LICENSE.txt)
+ 
+- LibFlute by Klaus Kühnhammer
+  available at https://github.com/5G-MAG/rt-libflute
+  Licensed under 5G-MAG terms (https://github.com/5G-MAG/rt-libflute/blob/development/LICENSE)
+ 
+- base64 by René Nyffenegger
+  available at https://github.com/ReneNyffenegger/cpp-base64
+  Licensed under zlib terms (https://github.com/ReneNyffenegger/cpp-base64/blob/master/LICENSE)

@@ -1,0 +1,265 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "TS26512_M5 merged APIs",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "{apiRoot}/3gpp-m5/v1",
+    "variables" : {
+      "apiRoot" : {
+        "description" : "See 3GPP TS 29.512 clause 6.1.",
+        "default" : "https://example.com"
+      }
+    }
+  } ],
+  "tags" : [ {
+    "name" : "M5_ConsumptionReporting",
+    "description" : "5G Media Streaming: Media Session Handling (M5) APIs: Consumption Reporting"
+  }, {
+    "name" : "M5_ServiceAccessInformation",
+    "description" : "5G Media Streaming: Media Session Handling (M5) APIs: Service Access Information"
+  } ],
+  "paths" : {
+    "/consumption-reporting/{aspId}" : {
+      "post" : {
+        "summary" : "Submit a Consumption Report",
+        "operationId" : "submitConsumptionReport",
+        "requestBody" : {
+          "description" : "A Consumption Report",
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/ConsumptionReport"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "204" : {
+            "description" : "Consumption Report Accepted"
+          },
+          "400" : {
+            "description" : "Bad Request"
+          },
+          "415" : {
+            "description" : "Unsupported Media Type"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "aspId",
+        "in" : "path",
+        "description" : "See 3GPP TS 26.512 clause 11.3.2.",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "$ref" : "./../3gpp-api-specs-all/TS29514_Npcf_PolicyAuthorization.yaml#/components/schemas/AspId"
+        }
+      } ]
+    },
+    "/service-access-information/{provisioningSessionId}" : {
+      "get" : {
+        "summary" : "Retrieve the Service Access Information resource",
+        "operationId" : "retrieveServiceAccessInformation",
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ServiceAccessInformationResource"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "Not Found"
+          }
+        }
+      },
+      "parameters" : [ {
+        "name" : "provisioningSessionId",
+        "in" : "path",
+        "description" : "The resource identifier of an existing Provisioning Session.",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/ResourceId"
+        }
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "ConsumptionReport" : {
+        "required" : [ "consumptionReportingUnits", "mediaPlayerEntry", "reportingClientId" ],
+        "type" : "object",
+        "properties" : {
+          "mediaPlayerEntry" : {
+            "type" : "string"
+          },
+          "reportingClientId" : {
+            "type" : "string"
+          },
+          "consumptionReportingUnits" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/ConsumptionReportingUnit"
+            }
+          }
+        }
+      },
+      "ConsumptionReportingUnit" : {
+        "required" : [ "duration", "mediaConsumed", "startTime" ],
+        "type" : "object",
+        "properties" : {
+          "mediaConsumed" : {
+            "type" : "string"
+          },
+          "startTime" : {
+            "$ref" : "../3gpp-api-specs-all/TS29571_CommonData.yaml#/components/schemas/DateTime"
+          },
+          "duration" : {
+            "$ref" : "../3gpp-api-specs-all/TS29571_CommonData.yaml#/components/schemas/DurationSec"
+          },
+          "locations" : {
+            "minItems" : 1,
+            "type" : "array",
+            "items" : {
+              "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/TypedLocation"
+            }
+          }
+        }
+      },
+      "ServerAddresses" : {
+        "minItems" : 1,
+        "type" : "array",
+        "items" : {
+          "type" : "string"
+        }
+      },
+      "ServiceAccessInformationResource" : {
+        "required" : [ "provisioningSessionId", "provisioningSessionType" ],
+        "type" : "object",
+        "properties" : {
+          "provisioningSessionId" : {
+            "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/ResourceId"
+          },
+          "provisioningSessionType" : {
+            "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/ProvisioningSessionType"
+          },
+          "StreamingAccess" : {
+            "type" : "object",
+            "properties" : {
+              "mediaPlayerEntry" : {
+                "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/Url"
+              }
+            }
+          },
+          "ClientConsumptionReportingConfiguration" : {
+            "required" : [ "locationReporting", "samplePercentage", "serverAddresses" ],
+            "type" : "object",
+            "properties" : {
+              "reportingInterval" : {
+                "$ref" : "../3gpp-api-specs-all/TS29571_CommonData.yaml#/components/schemas/DurationSec"
+              },
+              "serverAddresses" : {
+                "$ref" : "#/components/schemas/ServerAddresses"
+              },
+              "locationReporting" : {
+                "type" : "boolean"
+              },
+              "samplePercentage" : {
+                "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/Percentage"
+              }
+            }
+          },
+          "DynamicPolicyInvocationConfiguration" : {
+            "required" : [ "sdfMethods", "serverAddresses", "validPolicyTemplateIds" ],
+            "type" : "object",
+            "properties" : {
+              "serverAddresses" : {
+                "$ref" : "#/components/schemas/ServerAddresses"
+              },
+              "validPolicyTemplateIds" : {
+                "minItems" : 0,
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              },
+              "sdfMethods" : {
+                "minItems" : 0,
+                "type" : "array",
+                "items" : {
+                  "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/SdfMethod"
+                }
+              },
+              "externalReferences" : {
+                "minItems" : 1,
+                "type" : "array",
+                "items" : {
+                  "type" : "string"
+                }
+              }
+            }
+          },
+          "ClientMetricsReportingConfiguration" : {
+            "type" : "array",
+            "items" : {
+              "required" : [ "metrics", "samplePercentage", "scheme", "serverAddresses", "urlFilters" ],
+              "type" : "object",
+              "properties" : {
+                "serverAddresses" : {
+                  "minItems" : 1,
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                },
+                "scheme" : {
+                  "$ref" : "../3gpp-api-specs-all/TS29571_CommonData.yaml#/components/schemas/Uri"
+                },
+                "dataNetworkName" : {
+                  "$ref" : "../3gpp-api-specs-all/TS29571_CommonData.yaml#/components/schemas/Dnn"
+                },
+                "reportingInterval" : {
+                  "$ref" : "../3gpp-api-specs-all/TS29571_CommonData.yaml#/components/schemas/DurationSec"
+                },
+                "samplePercentage" : {
+                  "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/Percentage"
+                },
+                "urlFilters" : {
+                  "minItems" : 0,
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                },
+                "metrics" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          },
+          "NetworkAssistanceConfiguration" : {
+            "required" : [ "serverAddress" ],
+            "type" : "object",
+            "properties" : {
+              "serverAddress" : {
+                "$ref" : "../3gpp-api-specs-all/TS26512_CommonData.yaml#/components/schemas/Url"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
