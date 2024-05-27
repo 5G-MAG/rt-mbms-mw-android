@@ -200,7 +200,7 @@ class NakolosMwService : Service() {
     private fun startService() {
         if (isServiceStarted) return
         log("Starting the NAKOLOS MW foreground service task")
-        Toast.makeText(this, "NAKOLOS MW started", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "5G-MAG MW started", Toast.LENGTH_SHORT).show()
         isServiceStarted = true
 
         wakeLock =
@@ -252,7 +252,7 @@ class NakolosMwService : Service() {
         udpReceiver.running = false
         stopNativeMiddleware()
         disconnectFromMiddleware()
-        Toast.makeText(this, "NAKOLOS MW stopped", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "5G-MAG MW stopped", Toast.LENGTH_SHORT).show()
     }
    // override fun onBind(intent: Intent): IBinder? {
    //     return null
@@ -267,10 +267,10 @@ class NakolosMwService : Service() {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager;
             val channel = NotificationChannel(
                 notificationChannelId,
-                "NAKOLOS middleware notifications channel",
+                "5G-MAG middleware notifications channel",
                 NotificationManager.IMPORTANCE_HIGH
             ).let {
-                it.description = "NAKOLOS middleware notifications channel"
+                it.description = "5G-MAG middleware notifications channel"
                 it.enableLights(true)
                 it.lightColor = Color.RED
                 it.enableVibration(false)
@@ -290,8 +290,8 @@ class NakolosMwService : Service() {
         ) else Notification.Builder(this)
 
         return builder
-            .setContentTitle("NAKOLOS")
-            .setContentText("NAKOLOS middleware is running")
+            .setContentTitle("5G-MAG")
+            .setContentText("5G-MAG middleware is running")
             .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_stat_name)
             .setTicker("Ticker text")
