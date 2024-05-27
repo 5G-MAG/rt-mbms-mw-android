@@ -326,8 +326,8 @@ class UdpReceiver(applicationContext: Context, interfaceName: String) : Runnable
 
     var running = true
     public override fun run() {
-        address = InetAddress.getByName("239.11.4.10")
-        socketAddress = InetSocketAddress(address, 5501)
+        address = InetAddress.getByName("239.11.4.50")
+        socketAddress = InetSocketAddress(address, 9988)
 
         multicastSocket = MulticastSocket(socketAddress)
         multicastSocket!!.networkInterface = NetworkInterface.getByName(interfaceName)
