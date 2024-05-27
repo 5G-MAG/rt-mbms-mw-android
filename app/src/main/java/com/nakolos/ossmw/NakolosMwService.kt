@@ -227,7 +227,7 @@ class NakolosMwService : Service() {
 
         startNativeMiddleware(userDeviceName, api_key!!)
 
-        var service_announcement = readAssetFile("bootstrap.multipart")
+        var service_announcement = readAssetFile("bootstrap.multipart.hls")
         //var service_announcement = readAssetFile("bootstrap.multipart.debug")
         if (service_announcement != null) {
             setLocalServiceAnnouncement(service_announcement)

@@ -120,8 +120,8 @@ class MainActivity : AppCompatActivity() {
 
         val cdn_ept = "http://127.0.0.1:" +
                 3020 + "/" +
-                "ch1" + "/" +
-                "stream.m3u8"
+                "watchfolder/hls" + "/" +
+                "stream_0.m3u8"
         val mediaSource: MediaSource =
             HlsMediaSource.Factory(dataSourceFactory)
                 .setLoadErrorHandlingPolicy(policy)

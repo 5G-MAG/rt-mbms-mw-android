@@ -77,8 +77,8 @@ auto MBMS_RT::SeamlessContentStream::set_cdn_endpoint(const std::string& cdn_ept
   size_t spos = _playlist_path.rfind('/');
   _playlist_dir = _playlist_path.substr(0, spos+1);
   spdlog::debug("ContentStream: playlist dir is {}", _playlist_dir);
-  //cdn_base.set_path("/");
-  cdn_base.set_path("/cdn/");
+  cdn_base.set_path("/");
+  //cdn_base.set_path("/cdn/");
   cdn_base.set_query("");
   _cdn_endpoint = cdn_base.to_string(); 
   spdlog::info("ContentStream: setting CDN ept to {}", _cdn_endpoint);
@@ -121,7 +121,7 @@ auto MBMS_RT::SeamlessContentStream::handle_playlist( const std::string& content
   for (const auto& segment : playlist.segments()) {
    // spdlog::debug("segment: seq {}, extinf {}, uri {}", segment.seq, segment.extinf, segment.uri);
     if (_segments[plidx].find(segment.seq) == _segments[plidx].end()) {
-      std::string full_uri = (plidx == 0 ? "ch1/" : "ch2/") + segment.uri;
+      std::string full_uri = (plidx == 0 ? "watchfolder/hls/" : "ch2/") + segment.uri;
       auto seg =
         std::make_shared<Segment>(full_uri, segment.seq, segment.extinf);
       if (_cdn_client) {
