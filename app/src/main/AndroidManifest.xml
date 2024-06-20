@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.nakolos.ossmw">
+    package="com.fivegmag.ossmw">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -18,20 +18,20 @@
         android:theme="@style/Theme.LibFlute"
         tools:targetApi="31">
         <activity
-            android:name=".CppOssNoticesActivity"
+            android:name="com.fivegmag.ossmw.CppOssNoticesActivity"
             android:exported="false" />
         <activity
-            android:name="com.nakolos.ossmw.LicenseActivity"
+            android:name="com.fivegmag.ossmw.LicenseActivity"
             android:exported="false"
             android:label="@string/title_activity_license"
             android:theme="@style/Theme.LibFlute.NoActionBar" />
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.fivegmag.ossmw.SettingsActivity"
             android:exported="false"
             android:label="@string/title_activity_settings" />
 
         <service
-            android:name=".NakolosMwService"
+            android:name="com.fivegmag.ossmw.NakolosMwService"
             android:exported="true">
             <intent-filter>
                 <action android:name="nakolosmw.intent.action.START" />
@@ -39,7 +39,7 @@
         </service>
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.fivegmag.ossmw.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

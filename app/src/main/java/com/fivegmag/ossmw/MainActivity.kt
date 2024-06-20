@@ -13,14 +13,13 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-package com.nakolos.ossmw
+package com.fivegmag.ossmw
 
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -36,8 +35,7 @@ import androidx.media3.exoplayer.source.*
 import androidx.media3.exoplayer.upstream.DefaultLoadErrorHandlingPolicy
 import androidx.media3.exoplayer.upstream.LoadErrorHandlingPolicy
 import androidx.media3.ui.PlayerView
-import com.nakolos.ossmw.databinding.ActivityMainBinding
-import java.net.InetAddress
+import com.fivegmag.ossmw.databinding.ActivityMainBinding
 
 class RetryOnErrorPolicy : DefaultLoadErrorHandlingPolicy() {
     override fun getRetryDelayMsFor(loadErrorInfo: LoadErrorHandlingPolicy.LoadErrorInfo): Long {

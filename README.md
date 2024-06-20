@@ -84,3 +84,6 @@ the [Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflo
 branch of this project serves as an integration branch for new features. Consequently, please make
 sure to switch to the `development`
 branch before starting the implementation of a new feature. 
+
+## Acknowledgement
+The MBMS MW Android was originally developed by Bistem, Nakolos and ORS.

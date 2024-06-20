@@ -29,7 +29,7 @@ extern "C" jint JNI_OnLoad(JavaVM* vm, void* reserved)
 }
 
 extern "C" JNIEXPORT bool JNICALL
-Java_com_nakolos_ossmw_NakolosMwService_startNativeMiddleware(JNIEnv* env,
+Java_com_fivegmag_ossmw_NakolosMwService_startNativeMiddleware(JNIEnv* env,
 jobject thiz, jstring device_name, jstring japi_key) {
     std::string tag = "nakolos-mw";
     try {
@@ -60,7 +60,7 @@ jobject thiz, jstring device_name, jstring japi_key) {
 }
 
 extern "C" JNIEXPORT bool JNICALL
-Java_com_nakolos_ossmw_UdpReceiver_handlePacket(JNIEnv* env,
+Java_com_fivegmag_ossmw_UdpReceiver_handlePacket(JNIEnv* env,
                                                      jobject thiz,
                                                      jbyteArray buffer,
                                                      jint size) {
@@ -73,7 +73,7 @@ Java_com_nakolos_ossmw_UdpReceiver_handlePacket(JNIEnv* env,
     return true;
 }
 extern "C" JNIEXPORT bool JNICALL
-Java_com_nakolos_ossmw_NakolosMwService_setLocalServiceAnnouncement(JNIEnv* env,
+Java_com_fivegmag_ossmw_NakolosMwService_setLocalServiceAnnouncement(JNIEnv* env,
                                                     jobject thiz,
                                                     jstring sa) {
     const char *csa = env->GetStringUTFChars(sa, NULL);
@@ -83,7 +83,7 @@ Java_com_nakolos_ossmw_NakolosMwService_setLocalServiceAnnouncement(JNIEnv* env,
 }
 
 extern "C" JNIEXPORT bool JNICALL
-Java_com_nakolos_ossmw_NakolosMwService_stopNativeMiddleware(JNIEnv* env,
+Java_com_fivegmag_ossmw_NakolosMwService_stopNativeMiddleware(JNIEnv* env,
                                                      jobject thiz) {
     using namespace std::chrono_literals;
     spdlog::info("Stopping io_service tasks");
