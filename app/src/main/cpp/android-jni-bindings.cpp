@@ -29,13 +29,13 @@ extern "C" jint JNI_OnLoad(JavaVM* vm, void* reserved)
 }
 
 extern "C" JNIEXPORT bool JNICALL
-Java_com_fivegmag_ossmw_NakolosMwService_startNativeMiddleware(JNIEnv* env,
-jobject thiz, jstring device_name, jstring japi_key) {
-    std::string tag = "nakolos-mw";
+Java_com_fivegmag_ossmw_MwService_startNativeMiddleware(JNIEnv* env,
+                                                        jobject thiz, jstring device_name, jstring japi_key) {
+    std::string tag = "fivegmag-mw";
     try {
-        auto android_logger = spdlog::android_logger_mt("nakolos-mw", tag);
+        auto android_logger = spdlog::android_logger_mt("fivegmag-mw", tag);
         spdlog::set_default_logger(android_logger);
-        spdlog::info("Launching NAKOLOS native middleware");
+        spdlog::info("Launching 5G-MAG native middleware");
         spdlog::set_level(spdlog::level::debug);
     } catch (...) {}
 
@@ -73,9 +73,9 @@ Java_com_fivegmag_ossmw_UdpReceiver_handlePacket(JNIEnv* env,
     return true;
 }
 extern "C" JNIEXPORT bool JNICALL
-Java_com_fivegmag_ossmw_NakolosMwService_setLocalServiceAnnouncement(JNIEnv* env,
-                                                    jobject thiz,
-                                                    jstring sa) {
+Java_com_fivegmag_ossmw_MwService_setLocalServiceAnnouncement(JNIEnv* env,
+                                                              jobject thiz,
+                                                              jstring sa) {
     const char *csa = env->GetStringUTFChars(sa, NULL);
     mw->set_local_service_announcement(csa);
     env->ReleaseStringUTFChars(sa,csa);
@@ -83,8 +83,8 @@ Java_com_fivegmag_ossmw_NakolosMwService_setLocalServiceAnnouncement(JNIEnv* env
 }
 
 extern "C" JNIEXPORT bool JNICALL
-Java_com_fivegmag_ossmw_NakolosMwService_stopNativeMiddleware(JNIEnv* env,
-                                                     jobject thiz) {
+Java_com_fivegmag_ossmw_MwService_stopNativeMiddleware(JNIEnv* env,
+                                                       jobject thiz) {
     using namespace std::chrono_literals;
     spdlog::info("Stopping io_service tasks");
     if (mw) {

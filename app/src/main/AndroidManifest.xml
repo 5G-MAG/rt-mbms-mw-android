@@ -31,7 +31,7 @@
             android:label="@string/title_activity_settings" />
 
         <service
-            android:name="com.fivegmag.ossmw.NakolosMwService"
+            android:name="com.fivegmag.ossmw.MwService"
             android:exported="true">
             <intent-filter>
                 <action android:name="nakolosmw.intent.action.START" />

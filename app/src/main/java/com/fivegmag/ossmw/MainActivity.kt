@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun actionOnService(action: Actions) {
        // if (getServiceState(this) == ServiceState.STOPPED && action == Actions.STOP) return
-        Intent(this, NakolosMwService::class.java).also {
+        Intent(this, MwService::class.java).also {
             it.action = action.name
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
              //   log("Starting the service in >=26 Mode")
@@ -134,8 +134,8 @@ class MainActivity : AppCompatActivity() {
                     loadEventInfo: LoadEventInfo,
                     mediaLoadData: MediaLoadData
                 ) {
-                    if (loadEventInfo.responseHeaders.contains("NAKOLOS-File-Origin")) {
-                        for (header in loadEventInfo.responseHeaders.get("NAKOLOS-File-Origin")!!) {
+                    if (loadEventInfo.responseHeaders.contains("FIVEGMAG-File-Origin")) {
+                        for (header in loadEventInfo.responseHeaders.get("FIVEGMAG-File-Origin")!!) {
                             sourceInfoText.text = header;
                             if (lastSource != header) {
                                 lastSource = header

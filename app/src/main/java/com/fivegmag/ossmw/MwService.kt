@@ -39,9 +39,9 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
-private const val TAG = "NakolosMW"
+private const val TAG = "5G-MAG MW"
 
-class NakolosMwService : Service() {
+class MwService : Service() {
 
     private var groupCallSession: MbmsGroupCallSession? = null
     private lateinit var groupCallSessionCallback: MbmsGroupCallSessionCallback
@@ -56,7 +56,7 @@ class NakolosMwService : Service() {
     private var isServiceStarted = false
 
     fun log(msg: String) {
-        Log.d("NAKOLOS MW Service", msg)
+        Log.d("5G-MAG MW Service", msg)
     }
 
 
@@ -199,7 +199,7 @@ class NakolosMwService : Service() {
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun startService() {
         if (isServiceStarted) return
-        log("Starting the NAKOLOS MW foreground service task")
+        log("Starting the FIVEGMAG MW foreground service task")
         Toast.makeText(this, "5G-MAG MW started", Toast.LENGTH_SHORT).show()
         isServiceStarted = true
 
@@ -258,7 +258,7 @@ class NakolosMwService : Service() {
    //     return null
    // }
     private fun createNotification(): Notification {
-        val notificationChannelId = "NAKOLOS MW"
+        val notificationChannelId = "FIVEGMAG MW"
 
         // depending on the Android API that we're dealing with we will have
         // to use a specific method to create the notification

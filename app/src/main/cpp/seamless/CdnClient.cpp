@@ -58,7 +58,7 @@ auto MBMS_RT::CdnClient::get(const std::string& path, std::function<void(std::sh
 
             http::request<http::string_body> req{http::verb::get, _base_path + path, 11};
             req.set(http::field::host, _host);
-            req.set(http::field::user_agent, "nakolos MW/0.9");
+            req.set(http::field::user_agent, "fivegmag MW/0.9");
             http::write(stream, req);
 
             beast::flat_buffer buffer(1024*1024*128);
