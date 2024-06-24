@@ -253,7 +253,7 @@ auto LibFlute::Receiver::remove_expired_files(unsigned max_age) -> void
   for (auto it = _files.cbegin(); it != _files.cend();)
   {
     auto age = time(nullptr) - it->second->received_at();
-    if ( it->second->meta().content_location != "bootstrap.multipart"  && age > max_age) {
+    if ( it->second->meta().content_location != "bootstrap.multipart.hls"  && age > max_age) {
       it = _files.erase(it);
     } else {
       ++it;

@@ -13,17 +13,28 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-package com.nakolos.ossmw
+package com.fivegmag.ossmw
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.fivegmag.ossmw.databinding.ActivityLicenseBinding
 
-class CppOssNoticesActivity : AppCompatActivity() {
+class LicenseActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityLicenseBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_cpp_oss_notices)
-        var cpp_notices_text = findViewById<TextView>(R.id.cpp_notices_text_id)
-        cpp_notices_text.setText(R.string.cpp_notices_text);
+
+        binding = ActivityLicenseBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        title = "License"
+
+        var actionbar = getSupportActionBar()
+        actionbar?.setDisplayHomeAsUpEnabled(true)
+
+        var licenseText = findViewById<TextView>(R.id.license_text_id)
+        licenseText.setText(R.string.app_license_text);
     }
 }

@@ -36,6 +36,7 @@ namespace MBMS_RT {
       void add_segment(Segment segment) { _segments.push_back(std::move(segment)); };
 
       std::string to_string() const;
+      std::string remove_base_url(std::string uri) const;
 
       void set_target_duration(int duration) { _targetduration = duration; };
       int target_duration() const { return _targetduration; };

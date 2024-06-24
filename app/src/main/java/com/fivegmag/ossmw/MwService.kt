@@ -13,7 +13,7 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-package com.nakolos.ossmw
+package com.fivegmag.ossmw
 
 import android.annotation.SuppressLint
 import android.app.*
@@ -39,9 +39,9 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 
-private const val TAG = "NakolosMW"
+private const val TAG = "5G-MAG MW"
 
-class NakolosMwService : Service() {
+class MwService : Service() {
 
     private var groupCallSession: MbmsGroupCallSession? = null
     private lateinit var groupCallSessionCallback: MbmsGroupCallSessionCallback
@@ -56,7 +56,7 @@ class NakolosMwService : Service() {
     private var isServiceStarted = false
 
     fun log(msg: String) {
-        Log.d("NAKOLOS MW Service", msg)
+        Log.d("5G-MAG MW Service", msg)
     }
 
 
@@ -199,8 +199,8 @@ class NakolosMwService : Service() {
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun startService() {
         if (isServiceStarted) return
-        log("Starting the NAKOLOS MW foreground service task")
-        Toast.makeText(this, "NAKOLOS MW started", Toast.LENGTH_SHORT).show()
+        log("Starting the FIVEGMAG MW foreground service task")
+        Toast.makeText(this, "5G-MAG MW started", Toast.LENGTH_SHORT).show()
         isServiceStarted = true
 
         wakeLock =
@@ -227,7 +227,7 @@ class NakolosMwService : Service() {
 
         startNativeMiddleware(userDeviceName, api_key!!)
 
-        var service_announcement = readAssetFile("bootstrap.multipart")
+        var service_announcement = readAssetFile("bootstrap.multipart.hls")
         //var service_announcement = readAssetFile("bootstrap.multipart.debug")
         if (service_announcement != null) {
             setLocalServiceAnnouncement(service_announcement)
@@ -252,13 +252,13 @@ class NakolosMwService : Service() {
         udpReceiver.running = false
         stopNativeMiddleware()
         disconnectFromMiddleware()
-        Toast.makeText(this, "NAKOLOS MW stopped", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "5G-MAG MW stopped", Toast.LENGTH_SHORT).show()
     }
    // override fun onBind(intent: Intent): IBinder? {
    //     return null
    // }
     private fun createNotification(): Notification {
-        val notificationChannelId = "NAKOLOS MW"
+        val notificationChannelId = "FIVEGMAG MW"
 
         // depending on the Android API that we're dealing with we will have
         // to use a specific method to create the notification
@@ -267,10 +267,10 @@ class NakolosMwService : Service() {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager;
             val channel = NotificationChannel(
                 notificationChannelId,
-                "NAKOLOS middleware notifications channel",
+                "5G-MAG middleware notifications channel",
                 NotificationManager.IMPORTANCE_HIGH
             ).let {
-                it.description = "NAKOLOS middleware notifications channel"
+                it.description = "5G-MAG middleware notifications channel"
                 it.enableLights(true)
                 it.lightColor = Color.RED
                 it.enableVibration(false)
@@ -290,8 +290,8 @@ class NakolosMwService : Service() {
         ) else Notification.Builder(this)
 
         return builder
-            .setContentTitle("NAKOLOS")
-            .setContentText("NAKOLOS middleware is running")
+            .setContentTitle("5G-MAG")
+            .setContentText("5G-MAG middleware is running")
             .setContentIntent(pendingIntent)
             .setSmallIcon(R.drawable.ic_stat_name)
             .setTicker("Ticker text")
@@ -326,8 +326,8 @@ class UdpReceiver(applicationContext: Context, interfaceName: String) : Runnable
 
     var running = true
     public override fun run() {
-        address = InetAddress.getByName("239.11.4.10")
-        socketAddress = InetSocketAddress(address, 5501)
+        address = InetAddress.getByName("239.11.4.50")
+        socketAddress = InetSocketAddress(address, 9988)
 
         multicastSocket = MulticastSocket(socketAddress)
         multicastSocket!!.networkInterface = NetworkInterface.getByName(interfaceName)

@@ -13,14 +13,13 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-package com.nakolos.ossmw
+package com.fivegmag.ossmw
 
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -36,8 +35,7 @@ import androidx.media3.exoplayer.source.*
 import androidx.media3.exoplayer.upstream.DefaultLoadErrorHandlingPolicy
 import androidx.media3.exoplayer.upstream.LoadErrorHandlingPolicy
 import androidx.media3.ui.PlayerView
-import com.nakolos.ossmw.databinding.ActivityMainBinding
-import java.net.InetAddress
+import com.fivegmag.ossmw.databinding.ActivityMainBinding
 
 class RetryOnErrorPolicy : DefaultLoadErrorHandlingPolicy() {
     override fun getRetryDelayMsFor(loadErrorInfo: LoadErrorHandlingPolicy.LoadErrorInfo): Long {
@@ -92,7 +90,7 @@ class MainActivity : AppCompatActivity() {
     }
     private fun actionOnService(action: Actions) {
        // if (getServiceState(this) == ServiceState.STOPPED && action == Actions.STOP) return
-        Intent(this, NakolosMwService::class.java).also {
+        Intent(this, MwService::class.java).also {
             it.action = action.name
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
              //   log("Starting the service in >=26 Mode")
@@ -120,8 +118,8 @@ class MainActivity : AppCompatActivity() {
 
         val cdn_ept = "http://127.0.0.1:" +
                 3020 + "/" +
-                "ch1" + "/" +
-                "stream.m3u8"
+                "watchfolder/hls" + "/" +
+                "stream_0.m3u8"
         val mediaSource: MediaSource =
             HlsMediaSource.Factory(dataSourceFactory)
                 .setLoadErrorHandlingPolicy(policy)
@@ -136,8 +134,8 @@ class MainActivity : AppCompatActivity() {
                     loadEventInfo: LoadEventInfo,
                     mediaLoadData: MediaLoadData
                 ) {
-                    if (loadEventInfo.responseHeaders.contains("NAKOLOS-File-Origin")) {
-                        for (header in loadEventInfo.responseHeaders.get("NAKOLOS-File-Origin")!!) {
+                    if (loadEventInfo.responseHeaders.contains("FIVEGMAG-File-Origin")) {
+                        for (header in loadEventInfo.responseHeaders.get("FIVEGMAG-File-Origin")!!) {
                             sourceInfoText.text = header;
                             if (lastSource != header) {
                                 lastSource = header

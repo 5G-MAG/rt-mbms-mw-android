@@ -3,9 +3,8 @@
     <PreferenceCategory app:title="Info">
         <Preference
             app:key="main_text"
-            app:title="NAKOLOS Middleware"
-        app:summary="The NAKOLOS Middleware enables applications to receive media distributed over 5G Broadcast.\n
-        It is intended to be used for trials and demos only."/>
+            app:summary="The 5G-MAG Middleware enables applications to receive media distributed over 5G Broadcast.\n         It is intended to be used for trials and demos only."
+            app:title="5G-MAG Middleware" />
         <Preference
             app:key="main_text2"
             app:summary="Your use of this app is subject to the license available below this text (menu item License Information)."/>

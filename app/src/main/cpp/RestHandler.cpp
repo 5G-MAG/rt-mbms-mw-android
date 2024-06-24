@@ -228,7 +228,7 @@ void MBMS_RT::RestHandler::get(http_request message) {
         if (it->second->buffer() != nullptr) {
           web::http::http_response response(status_codes::OK);
           if (it->second->item_type() == CacheItem::ItemType::Segment) {
-              response.headers().add(U("NAKOLOS-File-Origin"), it->second->item_source_as_string());
+              response.headers().add(U("FIVEGMAG-File-Origin"), it->second->item_source_as_string());
               if (_active_source_cb) _active_source_cb(it->second->item_source_as_string());
           } else {
               if (_active_stream_cb) _active_stream_cb(it->second->content_location());

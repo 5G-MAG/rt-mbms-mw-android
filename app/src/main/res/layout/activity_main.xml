@@ -10,18 +10,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:orientation="vertical">
+        android:paddingRight="20dp">
 
         <ImageView
-            android:paddingTop="50dp"
-            android:paddingBottom="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/fiveg_mag"
-            ></ImageView>
+            android:paddingTop="50dp"
+            android:paddingBottom="30dp"
+            android:src="@drawable/fiveg_mag"></ImageView>
+
         <TextView
             android:id="@+id/source_info_text"
             android:layout_width="wrap_content"
@@ -32,29 +32,38 @@
             android:textColor="@color/black"
             android:textIsSelectable="false"
             android:textSize="20sp" />
+
         <androidx.media3.ui.PlayerView
             android:id="@+id/video_view1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             app:use_controller="true" />
+
         <Button
             android:id="@+id/btnStartService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start Middleware" android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:text="Start Middleware"
+            android:backgroundTint="@color/fivegmag_blue"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/btnStopService"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Stop Middleware"/>
+            android:text="Stop Middleware"
+            android:backgroundTint="@color/fivegmag_blue"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/btnSettings"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Settings &amp; Info"/>
+            android:text="Settings &amp; Info"
+            android:backgroundTint="@color/fivegmag_blue"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 
