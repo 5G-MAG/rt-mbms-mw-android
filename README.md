@@ -70,11 +70,9 @@ CQ30022U4R	device
 
 ## Running
 
-After installing the Media Session Handler application can be started from the Android app selection
+After installing, the MBMS MW Android application can be started from the Android app selection
 screen.
 
-As an alternative we can also run the app from the command
-line: `adb shell am start -n com.fivegmag.a5gmsmediasessionhandler/com.fivegmag.a5gmsmediasessionhandler.MainActivity `
 
 ## Development
 
