@@ -58,7 +58,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins"
             android:paddingRight="10dip"
-            android:text="Media files from: Unicast"
+            android:text="Media from: Unicast"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textIsSelectable="false"
@@ -68,9 +68,9 @@
 
         <androidx.media3.ui.PlayerView
             android:id="@+id/video_view1"
-            android:layout_width="320dp"
-            android:layout_height="180dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/source_info_text"
