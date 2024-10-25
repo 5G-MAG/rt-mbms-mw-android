@@ -45,9 +45,9 @@ namespace MBMS_RT {
       std::string item_source_as_string() const {
         switch (item_source()) {
           case ItemSource::Broadcast:
-            return "5GBC";
+            return "Media from: 5G Broadcast";
           case ItemSource::CDN:
-            return "CDN";
+            return "Media from: Unicast";
           case ItemSource::Generated:
             return "GEN";
           case ItemSource::Unavailable:
