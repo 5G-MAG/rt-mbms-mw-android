@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">5G-MAG MW</string>
+    <string name="app_name">5G-MAG 5GBC Playr</string>
     <string name="title_activity_settings">Settings &amp; Info</string>
 
     <string name="title_activity_license">License</string>
@@ -647,4 +647,6 @@ copy of the Program in return for a fee.\n
 \n
                      END OF TERMS AND CONDITIONS\n
  </string>
+    <string name="_5gmag_developer_link">http://developer.5g-mag.com</string>
+    <string name="_5g_mag_logo_description">5G-MAG</string>
 </resources>
