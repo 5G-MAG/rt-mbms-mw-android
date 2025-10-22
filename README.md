@@ -44,9 +44,9 @@ git clone https://github.com/5G-MAG/rt-mbms-mw-android
 
 Call the following command in order to generate the `apk` bundles.
 
-````
+```
 ./gradlew assemble
-````
+```
 
 The resulting `apk` bundles can be found in `app/build/outputs/apk`. The debug build is located
 in `debug` folder the release build in the `release` folder.
@@ -59,10 +59,10 @@ To install the `apk` on an Android device follow the following steps:
 2. Call `adb devices` to list the available Android devices. The output should look like the
    following:
 
-````
+```
 List of devices attached
 CQ30022U4R	device
-````
+```
 
 3. Install the `apk` on the target
    device: `adb -s <deviceID> install -r app/build/outputs/apk/debug/app-debug.apk`. Using `-r`
@@ -72,7 +72,6 @@ CQ30022U4R	device
 
 After installing, the MBMS MW Android application can be started from the Android app selection
 screen.
-
 
 ## Development
 
@@ -85,7 +84,7 @@ branch before starting the implementation of a new feature.
 
 ## Acknowledgement
 
-The MBMS MW Android was originally developed by Bistem, Nakolos and ORS.
+The MBMS MW Android was originally developed by Bitstem, Nakolos and ORS.
 
 ## Troubleshooting
 
