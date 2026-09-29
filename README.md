@@ -1,39 +1,62 @@
-<h1 align="center">MBMS MW Android</h1>
 <p align="center">
-  <img src="https://img.shields.io/badge/Status-Under_Development-yellow" alt="Under Development">
-  <img src="https://img.shields.io/github/v/tag/5G-MAG/rt-mbms-mw-android?label=version" alt="Version">
-  <img src="https://img.shields.io/badge/License-5G--MAG%20Public%20License%20(v1.0)-blue" alt="License">
+  <img src=".github/banner.svg" width="100%" alt="Reference Tools · 5G Broadcast - TV and Radio Services: MBMS Android Middleware">
 </p>
+
+<p align="center">
+  Android middleware that receives media over 5G Broadcast or unicast (OTT streaming) and serves
+  it to the media player on the device.
+</p>
+
+<p align="center">
+  <img alt="Status: under development"
+    src="https://img.shields.io/badge/Status-Under%20Development-e67e22">
+  <a href="https://github.com/5G-MAG/rt-mbms-mw-android/releases"><img alt="Version"
+    src="https://img.shields.io/github/v/release/5G-MAG/rt-mbms-mw-android?label=Version"></a>
+  <a href="LICENSE"><img alt="License: GNU Affero General Public License v3.0"
+    src="https://img.shields.io/badge/License-AGPL%20v3.0-blue"></a>
+</p>
+
+<p align="center">
+  <a href="https://www.5g-mag.com/reference-tools/5g-broadcast/">Project page</a> &nbsp;&middot;&nbsp;
+  <a href="https://github.com/5G-MAG/rt-mbms-mw-android/issues">Issues</a> &nbsp;&middot;&nbsp;
+  <a href="https://www.5g-mag.com/contributing">Contributing</a>
+</p>
+
+---
+
+## At a glance
+
+|  |  |
+|---|---|
+| **Part of** | [5G Broadcast - TV and Radio Services](https://www.5g-mag.com/reference-tools/5g-broadcast/), alongside [rt-libflute](https://github.com/5G-MAG/rt-libflute), [rt-mbms-application](https://github.com/5G-MAG/rt-mbms-application), [rt-mbms-application-provider](https://github.com/5G-MAG/rt-mbms-application-provider), [rt-mbms-bmsc](https://github.com/5G-MAG/rt-mbms-bmsc), [rt-mbms-client](https://github.com/5G-MAG/rt-mbms-client), [rt-mbms-examples](https://github.com/5G-MAG/rt-mbms-examples), [rt-mbms-gw](https://github.com/5G-MAG/rt-mbms-gw), [rt-mbms-modem](https://github.com/5G-MAG/rt-mbms-modem), [rt-mbms-tx](https://github.com/5G-MAG/rt-mbms-tx) and [rt-mbms-tx-for-qrd-and-crd](https://github.com/5G-MAG/rt-mbms-tx-for-qrd-and-crd) |
 
 ## Introduction
 
-The MBMS Middleware for Android enables the reception of media content via 5G Broadcast and
-unicast (OTT streaming). Based on an MBMS Service Announcement the media manifests and segments are
-either received directly via 5G Broadcast or fetched via unicast from a CDN. The MBMS Middleware
-exposes the received media files via a local webserver to the MediaPlayer. As a result, the device
-can dynamically switch between broadcast and unicast consumption without the media player being
-aware of how the media files were originally received.
+The MBMS Middleware for Android is a port of the
+[MBMS Middleware](https://github.com/5G-MAG/rt-mbms-mw) to Android. Based on an MBMS Service
+Announcement, it receives media manifests and segments directly over 5G Broadcast or fetches them
+over unicast from a CDN, and serves the files to the media player from a local web server. The
+device can therefore switch between broadcast and unicast without the media player knowing how
+each file was received.
 
-### About the implementation
+Packets received over 5G Broadcast are accessed through the
+[MbmsGroupCallSession API](https://developer.android.com/reference/android/telephony/MbmsGroupCallSession).
 
-The implementation is basically a port of
-the [MBMS Middleware](https://github.com/5G-MAG/rt-mbms-mw) to Android. It uses
-the [MbmsGroupCallSession API](https://developer.android.com/reference/android/telephony/MbmsGroupCallSession)
-for accessing packets received via 5G Broadcast.
+### Acknowledgement
+
+The MBMS MW Android was originally developed by Bitstem, Nakolos and ORS.
 
 ## Install dependencies
 
-The MBMS MW Android requires Github Large File Storage to be installed before cloning the
-repository. Please check
-the [Github documentation](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)
-for details.
+Install [Git Large File Storage](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage)
+before cloning the repository.
 
 ## Downloading
 
 Release versions can be downloaded from
 the [releases](https://github.com/5G-MAG/rt-mbms-mw-android/releases) page.
 
-The source can be obtained by cloning the github repository.
+To build from source, clone the repository:
 
 ```
 cd ~
@@ -42,22 +65,26 @@ git clone https://github.com/5G-MAG/rt-mbms-mw-android
 
 ## Building
 
-Call the following command in order to generate the `apk` bundles.
+Generate the `apk` bundles:
 
 ```
 ./gradlew assemble
 ```
 
-The resulting `apk` bundles can be found in `app/build/outputs/apk`. The debug build is located
-in `debug` folder the release build in the `release` folder.
+The bundles are written to `app/build/outputs/apk`: the debug build in the `debug` folder, the
+release build in the `release` folder.
 
-## Install
+### Troubleshooting
 
-To install the `apk` on an Android device follow the following steps:
+* If you get the error `gradlew: Permission Denied`, set the execution flag on the gradlew
+  file: `chmod +x gradlew`
 
-1. Connect your Android device to your development machine
-2. Call `adb devices` to list the available Android devices. The output should look like the
-   following:
+## Installing
+
+To install the `apk` on an Android device:
+
+1. Connect the Android device to your development machine.
+2. Run `adb devices` to list the available Android devices. The output should look like this:
 
 ```
 List of devices attached
@@ -65,28 +92,28 @@ CQ30022U4R	device
 ```
 
 3. Install the `apk` on the target
-   device: `adb -s <deviceID> install -r app/build/outputs/apk/debug/app-debug.apk`. Using `-r`
-   we reinstall an existing app, keeping its data.
+   device: `adb -s <deviceID> install -r app/build/outputs/apk/debug/app-debug.apk`. The `-r`
+   option reinstalls an existing app and keeps its data.
 
 ## Running
 
-After installing, the MBMS MW Android application can be started from the Android app selection
-screen.
+Once installed, start the MBMS MW Android application from the Android app selection screen.
 
 ## Development
 
 This project follows
-the [Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
-. The `development`
-branch of this project serves as an integration branch for new features. Consequently, please make
-sure to switch to the `development`
-branch before starting the implementation of a new feature.
+the [Gitflow workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
+The `development` branch is the integration branch for new features, so switch to it before
+starting work on a new feature.
 
-## Acknowledgement
+## Contributing
 
-The MBMS MW Android was originally developed by Bitstem, Nakolos and ORS.
+Contributions are welcome. How to raise an issue, fork the repository and open a pull request, and
+the Contributor License Agreement required before code can be merged, are described at
+<https://www.5g-mag.com/contributing>.
 
-## Troubleshooting
+## License
 
-* If you get an error `gradlew: Permission Denied` try to set the execution flag on your gradlew
-  file: `chmod +x gradlew` 
+Distributed under the GNU Affero General Public License v3.0. See [LICENSE](LICENSE). The native
+code in `app/src/main/cpp` is derived from the 5G-MAG MBMS Middleware. Attribution for that code
+and for the third-party software used is in [ATTRIBUTION_NOTICE](ATTRIBUTION_NOTICE).
